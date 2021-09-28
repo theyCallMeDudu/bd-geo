@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Pais;
+use App\Continente;
+use App\PaisBandeira;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PaisController extends Controller
 {
@@ -14,7 +17,9 @@ class PaisController extends Controller
      */
     public function index()
     {
-        //
+        $paises = Pais::all();
+
+        return view('pais.index', compact('paises'));
     }
 
     /**
@@ -24,7 +29,9 @@ class PaisController extends Controller
      */
     public function create()
     {
-        //
+        $continentes = Continente::all();
+
+        return view('pais.create', compact('continentes'));
     }
 
     /**
@@ -35,51 +42,89 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pais = new Pais;
+
+        $pais->nome = $request->nome;
+        $pais->fk_continente_id = $request->continente;
+        $pais->capital = $request->capital;
+        $pais->area = $request->area;
+        $pais->save();
+
+        // Upload de imagem
+        if ($request->hasFile('image')) {
+            $bandeira = $this->uploadBandeira($request);
+
+            PaisBandeira::create([
+                'nome' => $bandeira,
+                'fk_pais_id' => $pais->id
+            ]);
+        }
+
+        return redirect('/pais/index')->with('msg', 'País cadastrado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pais  $pais
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pais $pais)
-    {
-        //
+    public function uploadBandeira(Request $request) {
+        $bandeira  = $request->file('image');
+
+        $uploadBandeira = $bandeira->store('bandeiras', 'public');
+
+        return $uploadBandeira;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Pais  $pais
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pais $pais)
-    {
-        //
+    public function removeImagem(Request $request) {
+
+        $bandeira = $request->get('imagemBandeira');
+
+        // Remover imagem da pasta
+        if (Storage::disk('public')->exists($bandeira)) {
+            Storage::disk('public')->delete($bandeira);
+        }
+
+        // Remover imagem do banco
+        $deletarImagem = PaisBandeira::where('nome', $bandeira);
+        $deletarImagem->delete();
+
+        return redirect('/pais/index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pais  $pais
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pais $pais)
+    public function show($id)
     {
-        //
+        $pais = Pais::find($id);
+
+        return view('pais.show', compact('pais'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pais  $pais
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pais $pais)
+    public function edit($id)
     {
-        //
+        $pais = Pais::find($id);
+        $continentes = Continente::all();
+
+        return view('pais.edit', compact('pais', 'continentes'));
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->all();
+
+        // Upload de imagem
+        if ($request->hasFile('image')) {
+            $bandeira = $this->uploadBandeira($request);
+
+            PaisBandeira::create([
+                'nome' => $bandeira,
+                'fk_pais_id' => $request->id
+            ]);
+        }
+
+        Pais::find($request->id)->update($data);
+
+        return redirect('/pais/index')->with('msg', 'País atualizado com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        Pais::find($id)->delete();
+
+        return redirect('/pais/index');
     }
 }

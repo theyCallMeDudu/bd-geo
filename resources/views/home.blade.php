@@ -14,21 +14,33 @@
                         </div>
                     @endif
 
-                    <div class="card border-success col-sm-6">
-                        <img src="" class="card-img-top" alt="...">
+                    <div class="card col-sm-4">
                         <div class="card-body">
-                            <h5 class="card-title">Continentes</h5>
+                            <h5 class="card-title">
+                                <i class="fas fa-globe-americas" style="font-size: 14pt;"></i> Continentes
+                            </h5>
                             <p class="card-text">Seu catálogo de continentes.</p>
                             <a href="{{ route('home-continente') }}" class="btn btn-primary">Visitar</a>
                         </div>
                     </div>
 
-                    <div class="card col-sm-6">
-                        <img src="assets/brasil.jpg" class="card-img-top" alt="...">
+                    <div class="card col-sm-4">
                         <div class="card-body">
-                            <h5 class="card-title">Países</h5>
+                            <h5 class="card-title">
+                                <i class="fas fa-flag-usa" style="font-size: 14pt;"></i> Países
+                            </h5>
                             <p class="card-text">Seu catálogo de países.</p>
-                            <a href="" class="btn btn-primary">Visitar</a>
+                            <a href="{{ route('home-pais') }}" class="btn btn-primary">Visitar</a>
+                        </div>
+                    </div>                    
+                    
+                    <div class="card col-sm-4">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-city" style="font-size: 14pt;"></i> Cidades
+                            </h5>
+                            <p class="card-text">Seu catálogo de cidades.</p>
+                            <a href="{{ route('home-pais') }}" class="btn btn-primary">Visitar</a>
                         </div>
                     </div>                    
                 </div>

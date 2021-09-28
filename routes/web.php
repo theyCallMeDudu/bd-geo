@@ -27,3 +27,17 @@ Route::get('/continente/edit/{id}', 'ContinenteController@edit')->name('edit-con
 Route::put('/continente/update/{id}', 'ContinenteController@update')->name('update-continente')->middleware('auth');
 Route::put('/continente/{id}', 'ContinenteController@destroy')->name('destroy-continente')->middleware('auth');
 
+// Países
+Route::get('/pais/index', 'PaisController@index')->name('home-pais')->middleware('auth');
+Route::get('/pais/create', 'PaisController@create')->name('create-pais')->middleware('auth');
+Route::post('/pais/index', 'PaisController@store')->name('store-pais')->middleware('auth');
+Route::get('/pais/edit/{id}', 'PaisController@edit')->name('edit-pais')->middleware('auth');
+Route::put('/pais/update/{id}', 'PaisController@update')->name('update-pais')->middleware('auth');
+Route::put('/pais/{id}', 'PaisController@destroy')->name('destroy-pais')->middleware('auth');
+Route::get('/pais/{id?}', 'PaisController@show')->name('show-pais')->middleware('auth');
+
+// Rota para remover imagem de bandeira
+Route::post('/imagem/remove', 'PaisController@removeImagem')->name('remove-imagem')->middleware('auth');
+
+// Cidades
+Route::get('/cidade/index', 'CidadeController@index')->name('home-cidade')->middleware('auth');

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Continente;
+use App\CidadePostal;
 use Illuminate\Http\Request;
 
-class ContinenteController extends Controller
+class CidadePostalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class ContinenteController extends Controller
      */
     public function index()
     {
-        $continentes = Continente::all();
-
-        return view('continente.index', compact('continentes'));
+        //
     }
 
     /**
@@ -26,7 +24,7 @@ class ContinenteController extends Controller
      */
     public function create()
     {
-        return view('continente.create');
+        //
     }
 
     /**
@@ -37,21 +35,16 @@ class ContinenteController extends Controller
      */
     public function store(Request $request)
     {
-        $continente = new Continente;
-
-        $continente->nome = $request->nome;
-        $continente->save();
-
-        return redirect('/continente/index')->with('msg', 'Continente cadastrado com sucesso!');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Continente  $continente
+     * @param  \App\CidadePostal  $cidadePostal
      * @return \Illuminate\Http\Response
      */
-    public function show(Continente $continente)
+    public function show(CidadePostal $cidadePostal)
     {
         //
     }
@@ -59,42 +52,34 @@ class ContinenteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Continente  $continente
+     * @param  \App\CidadePostal  $cidadePostal
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CidadePostal $cidadePostal)
     {
-        $continente = Continente::find($id);
-
-        return view('continente.edit', compact('continente'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Continente  $continente
+     * @param  \App\CidadePostal  $cidadePostal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, CidadePostal $cidadePostal)
     {
-        $data = $request->all();
-
-        Continente::find($request->id)->update($data);
-
-        return redirect('/continente/index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Continente  $continente
+     * @param  \App\CidadePostal  $cidadePostal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CidadePostal $cidadePostal)
     {
-        Continente::find($id)->delete();
-
-        return redirect('/continente/index');
+        //
     }
 }

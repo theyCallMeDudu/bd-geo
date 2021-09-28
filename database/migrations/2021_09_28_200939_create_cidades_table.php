@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContinentesTable extends Migration
+class CreateCidadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateContinentesTable extends Migration
      */
     public function up()
     {
-        Schema::create('continentes', function (Blueprint $table) {
+        Schema::create('cidades', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('fk_pais_id');
             $table->string('nome');
+            $table->float('area', 10, 2);
+            $table->date('fundacao');
+            $table->foreign('fk_pais_id')->references('id')->on('pais')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -26,6 +30,6 @@ class CreateContinentesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('continentes');
+        Schema::dropIfExists('cidades');
     }
 }

@@ -15,7 +15,11 @@ class CreatePaisTable extends Migration
     {
         Schema::create('pais', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('fk_continente_id');
+            $table->string('nome');
+            $table->string('capital');
+            $table->float('area', 10, 2);
+            $table->foreign('fk_continente_id')->references('id')->on('continente')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

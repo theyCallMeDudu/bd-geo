@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Continente extends Model
+class CidadePostal extends Model
 {
-    protected $table = 'continentes';
+    protected $table = 'cidade_postais';
     public $primaryKey = 'id';
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'fk_cidade_id'];
     public $incrementing = true;
     public $timestamps = false;
 }

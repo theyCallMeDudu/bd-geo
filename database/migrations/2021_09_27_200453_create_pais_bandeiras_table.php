@@ -15,7 +15,9 @@ class CreatePaisBandeirasTable extends Migration
     {
         Schema::create('pais_bandeiras', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('nome');
+            $table->unsignedBigInteger('fk_pais_id');
+            $table->foreign('fk_pais_id')->references('id')->on('pais')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
