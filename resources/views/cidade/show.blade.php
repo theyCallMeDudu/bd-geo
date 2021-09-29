@@ -8,7 +8,11 @@
             <div class="card mb-3" style="max-width: 540px; margin: auto;">
                 <div class="row g-0">
                     <div class="col-md-4" style="margin-right: 30px;">
-                        <img src="{{ asset('storage/' . $cidade->relCidadePostal->nome) }}" class="img-fluid rounded-start" alt="Cartão postal de {{ $cidade->nome }}" width="200">
+                        @if (isset($cidade->relCidadePostal->nome))
+                            <img src="{{ asset('storage/' . $cidade->relCidadePostal->nome) }}" class="img-fluid rounded-start" alt="Cartão postal de {{ $cidade->nome }}" width="200"/>
+                        @else
+                            <img src="/img/sem_foto.jpg" class="img-fluid rounded-start" alt="Cartão postal de {{ $cidade->nome }}">
+                        @endif
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">

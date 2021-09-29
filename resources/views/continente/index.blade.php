@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Continentes</h1>
+        <h1 id="h1-continentes">Continentes</h1>
         <a type="button" class="btn btn-success" style="float: right;" href="{{ route('create-continente') }}">Novo</a>
         <table class="table table-success able-striped">
             <thead>
