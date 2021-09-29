@@ -37,7 +37,16 @@ Route::put('/pais/{id}', 'PaisController@destroy')->name('destroy-pais')->middle
 Route::get('/pais/{id?}', 'PaisController@show')->name('show-pais')->middleware('auth');
 
 // Rota para remover imagem de bandeira
-Route::post('/imagem/remove', 'PaisController@removeImagem')->name('remove-imagem')->middleware('auth');
+Route::post('/bandeira/remove', 'PaisController@removeBandeira')->name('remove-bandeira')->middleware('auth');
 
 // Cidades
 Route::get('/cidade/index', 'CidadeController@index')->name('home-cidade')->middleware('auth');
+Route::get('/cidade/create', 'CidadeController@create')->name('create-cidade')->middleware('auth');
+Route::post('/cidade/index', 'CidadeController@store')->name('store-cidade')->middleware('auth');
+Route::get('cidade/edit/{id}', 'CidadeController@edit')->name('edit-cidade')->middleware('auth');
+Route::put('/cidade/update/{id}', 'CidadeController@update')->name('update-cidade')->middleware('auth');
+Route::put('/cidade/{id}', 'CidadeController@destroy')->name('destroy-cidade')->middleware('auth');
+Route::get('cidade/{id?}', 'CidadeController@show')->name('show-cidade')->middleware('auth');
+
+// Rota para remover imagem de cartão postal
+Route::post('/postal/remove', 'CidadeController@removePostal')->name('remove-postal')->middleware('auth');

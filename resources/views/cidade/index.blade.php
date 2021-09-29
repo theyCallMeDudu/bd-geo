@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Cidades</h1>
-        <a type="button" class="btn btn-success" style="float: right;" href="">Novo</a>
+        <a type="button" class="btn btn-success" style="float: right;" href="{{ route('create-cidade') }}">Nova</a>
         <table class="table table-success able-striped">
             <thead>
                 <tr>
@@ -15,27 +15,27 @@
             <tbody>
                 @foreach ($cidades as $cidade)
                 <tr>
-                <td>{{ $pais->nome }}</td>
+                <td>{{ $cidade->nome }}</td>
                 <td>
-                    @if (isset($pais->relPaisBandeira->nome))
-                        <img src="{{ asset('storage/' . $pais->relPaisBandeira->nome) }}" alt="{{ $pais->nome }}" width="50" height="30" />
+                    @if (isset($cidade->relCidadePostal->nome))
+                        <img src="{{ asset('storage/' . $cidade->relCidadePostal->nome) }}" alt="{{ $cidade->nome }}" width="50" height="30" />
                     @else
-                        <img src="/img/sem_foto.jpg" alt="{{ $pais->nome }}" width="50" height="30">
+                        <img src="/img/sem_foto.jpg" alt="{{ $cidade->nome }}" width="50" height="30">
                     @endif
                 </td>
                 <td>
                     {{-- Botão de visualizar --}}
-                    <a type="button" class="btn btn-info" href="/pais/{{ $pais->id }}">
+                    <a type="button" class="btn btn-info" href="/cidade/{{ $cidade->id }}">
                         Visualizar
                     </a>
 
                     {{-- Botão de editar --}}
-                    <a type="button" class="btn btn-primary" href="/pais/edit/{{ $pais->id }}">
+                    <a type="button" class="btn btn-primary" href="/cidade/edit/{{ $cidade->id }}">
                         Editar
                     </a>
 
                     {{-- Form e botão de excluir --}}
-                    <form action="/pais/{{ $pais->id }}" method="POST" style="display: inline-block;">
+                    <form action="/cidade/{{ $cidade->id }}" method="POST" style="display: inline-block;">
                         {{ method_field('PUT') }}
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         

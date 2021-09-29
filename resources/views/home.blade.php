@@ -40,7 +40,7 @@
                                 <i class="fas fa-city" style="font-size: 14pt;"></i> Cidades
                             </h5>
                             <p class="card-text">Seu catálogo de cidades.</p>
-                            <a href="{{ route('home-pais') }}" class="btn btn-primary">Visitar</a>
+                            <a href="{{ route('home-cidade') }}" class="btn btn-primary">Visitar</a>
                         </div>
                     </div>                    
                 </div>

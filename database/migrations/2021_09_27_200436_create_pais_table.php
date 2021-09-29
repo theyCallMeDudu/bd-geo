@@ -17,8 +17,8 @@ class CreatePaisTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('fk_continente_id');
             $table->string('nome');
-            $table->string('capital');
-            $table->float('area', 10, 2);
+            $table->string('capital')->nullable();
+            $table->float('area', 10, 2)->nullable();
             $table->foreign('fk_continente_id')->references('id')->on('continente')->onDelete('cascade')->onUpdate('cascade');
         });
     }

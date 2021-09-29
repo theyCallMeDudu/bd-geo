@@ -51,10 +51,10 @@
             </form>
 
             @if (isset($pais->relPaisBandeira->nome))
-                <form action="{{ route('remove-imagem') }}" method="POST" class="form-horizontal">
+                <form action="{{ route('remove-bandeira') }}" method="POST" class="form-horizontal">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="imagemBandeira" value="{{ $pais->relPaisBandeira->nome }}">
-                    <h6>Bandeira</h6>
+                    <p style="margin-top: 10px;"><b>Bandeira</b></p>
                     <img src="{{ asset('storage/' . $pais->relPaisBandeira->nome) }}">
                     <button type="submit" class="btn btn-danger">Remover imagem</button>
                 </form>

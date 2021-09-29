@@ -11,4 +11,8 @@ class CidadePostal extends Model
     protected $fillable = ['nome', 'fk_cidade_id'];
     public $incrementing = true;
     public $timestamps = false;
+
+    public function relCidade() {
+        return $this->belongsTo(Cidade::class, 'fk_cidade_id');
+    }
 }

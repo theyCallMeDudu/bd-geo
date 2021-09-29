@@ -44,6 +44,7 @@
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('home-continente') }}">Continentes</a></li>
                         <li><a href="{{ route('home-pais') }}">Países</a></li>
+                        <li><a href="{{ route('home-cidade') }}">Cidades</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

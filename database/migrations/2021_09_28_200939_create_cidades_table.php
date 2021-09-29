@@ -17,8 +17,8 @@ class CreateCidadesTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('fk_pais_id');
             $table->string('nome');
-            $table->float('area', 10, 2);
-            $table->date('fundacao');
+            $table->float('area', 10, 2)->nullable();
+            $table->date('fundacao')->nullable();
             $table->foreign('fk_pais_id')->references('id')->on('pais')->onDelete('cascade')->onUpdate('cascade');
         });
     }

@@ -71,7 +71,7 @@ class PaisController extends Controller
         return $uploadBandeira;
     }
 
-    public function removeImagem(Request $request) {
+    public function removeBandeira(Request $request) {
 
         $bandeira = $request->get('imagemBandeira');
 
@@ -84,7 +84,7 @@ class PaisController extends Controller
         $deletarImagem = PaisBandeira::where('nome', $bandeira);
         $deletarImagem->delete();
 
-        return redirect('/pais/index');
+        return redirect('/pais/index')->with('msg', 'Bandeira removida com sucesso!');
     }
 
     public function show($id)

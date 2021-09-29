@@ -3,83 +3,112 @@
 namespace App\Http\Controllers;
 
 use App\Cidade;
+use App\Pais;
+use App\CidadePostal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CidadeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $cidades = Cidade::all();
+        
+        return view('cidade.index', compact('cidades'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        $paises = Pais::all();
+        
+        return view('cidade.create', compact('paises'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $cidade = new Cidade;
+
+        $cidade->nome = $request->nome;
+        $cidade->area = $request->area;
+        $cidade->fundacao = $request->fundacao;
+        $cidade->fk_pais_id = $request->pais;
+        $cidade->save();
+
+        // Upload de imagem
+        if ($request->hasFile('image')) {
+            $postal = $this->uploadPostal($request);
+
+            CidadePostal::create([
+                'nome' => $postal,
+                'fk_cidade_id' => $cidade->id
+            ]);
+        }
+
+        return redirect('/cidade/index')->with('msg', 'Cidade cadastrada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Cidade  $cidade
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cidade $cidade)
-    {
-        //
+    public function uploadPostal(Request $request) {
+        $postal = $request->file('image');
+
+        $uploadPostal = $postal->store('postais', 'public');
+
+        return $uploadPostal;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cidade  $cidade
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cidade $cidade)
-    {
-        //
+    public function removePostal(Request $request) {
+        $postal = $request->get('imagemPostal');
+
+        // Remover imagem da pasta
+        if (Storage::disk('public')->exists('postal')) {
+            Storage::disk('public')->delete('postal');
+        }
+
+        // Remover imagem do banco
+        $deletarImagem = CidadePostal::where('nome', $postal);
+        $deletarImagem->delete();
+
+        return redirect('/cidade/index')->with('msg', 'Cartão postal removido com sucesso!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cidade  $cidade
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cidade $cidade)
+    public function show($id)
     {
-        //
+        $cidade = Cidade::find($id);
+        $fundacaoFormatada = date('d/m/Y', strtotime($cidade->fundacao));
+
+        return view('cidade.show', compact('cidade', 'fundacaoFormatada'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Cidade  $cidade
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cidade $cidade)
+    public function edit($id)
     {
-        //
+        $cidade = Cidade::find($id);
+        $paises = Pais::all();
+
+        return view('cidade.edit', compact('cidade', 'paises'));
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->all();
+
+        // Upload de imagem
+        if ($request->hasFile('image')) {
+            $postal = $this->uploadPostal($request);
+
+            CidadePostal::create([
+                'nome' => $postal,
+                'fk_cidade_id' => $request->id
+            ]);
+        }
+
+        Cidade::find($request->id)->update($data);
+
+        return redirect('/cidade/index')->with('msg', 'Cidade atualizada com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        Cidade::find($id)->delete();
+
+        return redirect('/cidade/index')->with('msg', 'Cidade excluída com sucesso!');
     }
 }
