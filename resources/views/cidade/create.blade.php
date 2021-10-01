@@ -17,12 +17,12 @@
             
                 <div class="form-group">
                     <label for="area">Área total</label>
-                    <input type="text" class="form-control" id="area" name="area" placeholder="Ex.: 1255 (use pontos ao invés de vírgulas)" required autocomplete="off">
+                    <input type="text" class="form-control" id="area" name="area" placeholder="Ex.: 1255 (use pontos ao invés de vírgulas)" autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label for="fundacao">Data de fundação</label>
-                    <input type="date" class="form-control" id="fundacao" name="fundacao" placeholder="Ex.: 01/03/1565" required autocomplete="off">
+                    <input type="date" class="form-control" id="fundacao" name="fundacao" placeholder="Ex.: 01/03/1565" autocomplete="off">
                 </div>
 
                 <div class="form-group">

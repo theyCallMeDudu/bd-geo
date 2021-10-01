@@ -34,15 +34,37 @@
                         Editar
                     </a>
 
-                    {{-- Form e botão de excluir --}}
-                    <form action="/pais/{{ $pais->id }}" method="POST" style="display: inline-block;">
-                        {{ method_field('PUT') }}
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        
-                        <button type="submit" class="btn btn-danger">
-                            Excluir
-                        </button>
-                    </form>
+                    {{-- Botão de excluir (chama modal de exclusão) --}}
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-del-pais-{{ $pais->id }}">Excluir</button>
+
+                    <!-- Modal de exclusão -->
+                    <div class="modal fade" id="modal-del-pais-{{ $pais->id }}" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Excluir país</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Deseja realmente excluir este país?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                                    
+                                    {{-- Form e botão de excluir --}}
+                                    <form action="/pais/{{ $pais->id }}" method="POST" style="display: inline-block;">
+                                        {{-- <input type="hidden" name="_method" value="delete"/> --}}
+                                        {{ method_field('PUT') }}
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        
+                                        <button type="submit" class="btn btn-danger">
+                                            Sim
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 </tr>
                 @endforeach

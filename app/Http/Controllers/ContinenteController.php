@@ -82,7 +82,7 @@ class ContinenteController extends Controller
 
         Continente::find($request->id)->update($data);
 
-        return redirect('/continente/index');
+        return redirect('/continente/index')->with('msg', 'Continente atualizado com sucesso!');
     }
 
     /**
@@ -95,6 +95,6 @@ class ContinenteController extends Controller
     {
         Continente::find($id)->delete();
 
-        return redirect('/continente/index');
+        return redirect('/continente/index')->with('msg', 'Continente excluído com sucesso!');
     }
 }

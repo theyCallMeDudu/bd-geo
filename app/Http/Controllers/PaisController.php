@@ -125,6 +125,6 @@ class PaisController extends Controller
     {
         Pais::find($id)->delete();
 
-        return redirect('/pais/index');
+        return redirect('/pais/index')->with('msg', 'País excluído com sucesso!');
     }
 }

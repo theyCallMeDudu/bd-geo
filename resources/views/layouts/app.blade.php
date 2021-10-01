@@ -13,6 +13,9 @@
     <!-- Ícones Font Awesome -->
     <script src="https://kit.fontawesome.com/c0209b2941.js" crossorigin="anonymous"></script>
 
+    <!-- Bootstrap CSS -->
+    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
@@ -94,6 +97,16 @@
     </div>
 
     <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+
+    <!-- Bootstrap -->
+    <script href="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- App (vem no sistema) -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <!-- Meu script -->
+    <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
 </html>

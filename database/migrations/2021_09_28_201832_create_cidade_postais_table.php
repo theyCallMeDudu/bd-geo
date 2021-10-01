@@ -15,7 +15,7 @@ class CreateCidadePostaisTable extends Migration
     {
         Schema::create('cidade_postais', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('fk_cidade_id');
+            $table->integer('fk_cidade_id')->unsigned()->index();
             $table->string('nome');
             $table->foreign('fk_cidade_id')->references('id')->on('cidades')->onDelete('cascade')->onUpdate('cascade');
         });

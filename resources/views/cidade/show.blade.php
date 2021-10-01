@@ -17,8 +17,19 @@
                     <div class="col-md-7">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{ $cidade->nome }}</strong></h5>
-                            <p class="card-text">Área total: {{ $cidade->area }} km²</p>
-                            <p class="card-text">Fundação: {{ $fundacaoFormatada }} </p>
+                            
+                            @if (isset($cidade->area))
+                                <p class="card-text">Área total: {{ $cidade->area }} km²</p>
+                            @else
+                                <p class="card-text">Área total: não informado</p>
+                            @endif
+
+                            @if (isset($cidade->fundacao))
+                                <p class="card-text">Fundação: {{ $fundacaoFormatada }} </p>
+                            @else
+                                <p class="card-text">Fundação: não informado </p>
+                            @endif
+                            
                             <p class="card-text">País: {{ $cidade->relPais->nome }}</p>
                         </div>
                     </div>

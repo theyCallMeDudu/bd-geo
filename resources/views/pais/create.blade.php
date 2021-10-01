@@ -22,7 +22,7 @@
                 
                 <div class="form-group">
                     <label for="capital">Área total</label>
-                    <input type="text" class="form-control" id="area" name="area" placeholder="Ex.: 8510345.538 (use pontos ao invés de vírgulas)" required autocomplete="off">
+                    <input type="text" class="form-control" id="area" name="area" placeholder="Ex.: 8510345.538 (use pontos ao invés de vírgulas)" autocomplete="off">
                 </div>
 
                 <div class="form-group">

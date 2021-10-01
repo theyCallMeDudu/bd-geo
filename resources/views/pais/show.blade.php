@@ -18,7 +18,13 @@
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{ $pais->nome }}</strong></h5>
                             <p class="card-text">Capital: {{ $pais->capital }}</p>
-                            <p class="card-text">Área total: {{ $pais->area }} km²</p>
+                            
+                            @if (isset($pais->area))
+                                <p class="card-text">Área total: {{ $pais->area }} km²</p>
+                            @else
+                                <p class="card-text">Área total: não informado</p>
+                            @endif
+
                             <p class="card-text">Continente: {{ $pais->relContinente->nome }}</p>
                         </div>
                     </div>
