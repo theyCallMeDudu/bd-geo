@@ -20,12 +20,12 @@
 
                 <div class="form-group">
                     <label for="capital">Capital</label>
-                    <input type="text" class="form-control" id="capital" name="capital" value="{{ $pais->capital }}" placeholder="Ex.: Brasília" required autocomplete="off">
+                    <input type="text" class="form-control" id="capital" name="capital" value="{{ $pais->capital }}" placeholder="Ex.: Brasília" autocomplete="off">
                 </div>
                 
                 <div class="form-group">
                     <label for="capital">Área total</label>
-                    <input type="text" class="form-control" id="area" name="area" value="{{ $pais->area }}"placeholder="Ex.: 8510345.538 (use pontos ao invés de vírgulas)" required autocomplete="off">
+                    <input type="text" class="form-control" id="area" name="area" value="{{ $pais->area }}"placeholder="Ex.: 8510345.538 (use pontos ao invés de vírgulas)" autocomplete="off">
                 </div>
 
                 <div class="form-group">
