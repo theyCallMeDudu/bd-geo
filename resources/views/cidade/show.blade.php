@@ -4,6 +4,17 @@
 
 @section('content')
     <div class="container">
+
+        @auth
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('home-cidade')}}">Cidades</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Visualizar cidade</li>
+                </ol>
+            </nav>
+        @endauth
+
         <div class="row" style="margin-top: 22px;">
             <div class="card mb-3" style="max-width: 540px; margin: auto;">
                 <div class="row g-0">

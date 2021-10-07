@@ -6,6 +6,16 @@
     <div class="container">
         <h1>Novo país</h1>
 
+        @auth
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('home-pais')}}">Países</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Novo país</li>
+                </ol>
+            </nav>
+        @endauth
+
         <div>
             <form action="{{ route('store-pais') }}" method="POST" enctype="multipart/form-data">
                 {{-- @csrf --}}
@@ -17,7 +27,7 @@
                 
                 <div class="form-group">
                     <label for="capital">Capital</label>
-                    <input type="text" class="form-control" id="capital" name="capital" placeholder="Ex.: Brasília" required autocomplete="off">
+                    <input type="text" class="form-control" id="capital" name="capital" placeholder="Ex.: Brasília" autocomplete="off">
                 </div>
                 
                 <div class="form-group">

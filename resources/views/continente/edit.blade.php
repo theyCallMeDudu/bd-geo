@@ -6,6 +6,16 @@
     <div class="container">
         <h1>Editar continente</h1>
 
+        @auth
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('home-continente')}}">Continentes</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar continente</li>
+                </ol>
+            </nav>
+        @endauth
+
         <div>
             <form action="/continente/update/{{ $continente->id }}" method="POST" enctype="multipart/form-data">
                 {{-- @csrf --}}

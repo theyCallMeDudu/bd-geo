@@ -74,3 +74,9 @@ a.cidades:hover {
     border-left: 5px solid #FFA333;
     padding-left: 2px;
 }
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

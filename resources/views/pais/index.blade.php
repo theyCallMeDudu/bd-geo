@@ -3,6 +3,16 @@
 @section('content')
     <div class="container">
         <h1 id="h1-paises">Países</h1>
+
+        @auth
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                    <li class="breadcrumb-item">Países</li>
+                </ol>
+            </nav>
+        @endauth
+
         <a type="button" class="btn btn-success" style="float: right;" href="{{ route('create-pais') }}">Novo</a>
         <table class="table table-success able-striped">
             <thead>
@@ -70,5 +80,12 @@
                 @endforeach
             </tbody>
         </table>
+
+        <!-- Paginação -->
+        <div class="pages">
+            <p>
+                {{ $paises->links() }}
+            </p>
+        </div>
     </div>
 @endsection

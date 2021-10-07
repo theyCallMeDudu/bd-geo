@@ -12,7 +12,8 @@ class CidadeController extends Controller
 {
     public function index()
     {
-        $cidades = Cidade::all();
+        $cidades = Cidade::orderBy('nome')->paginate(5);
+
         
         return view('cidade.index', compact('cidades'));
     }

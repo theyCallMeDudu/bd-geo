@@ -14,7 +14,7 @@ class ContinenteController extends Controller
      */
     public function index()
     {
-        $continentes = Continente::all();
+        $continentes = Continente::orderBy('nome')->paginate(5);
 
         return view('continente.index', compact('continentes'));
     }

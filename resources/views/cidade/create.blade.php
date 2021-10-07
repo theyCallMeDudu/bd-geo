@@ -6,6 +6,16 @@
     <div class="container">
         <h1>Nova cidade</h1>
 
+        @auth
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('home-cidade')}}">Cidades</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Nova cidade</li>
+                </ol>
+            </nav>
+        @endauth
+
         <div>
             <form action="{{ route('store-cidade') }}" method="POST" enctype="multipart/form-data">
                 {{-- @csrf --}}

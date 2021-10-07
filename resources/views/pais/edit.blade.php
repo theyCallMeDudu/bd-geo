@@ -6,6 +6,16 @@
     <div class="container">
         <h1>Editar país</h1>
 
+        @auth
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('home-pais')}}">Países</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar país</li>
+                </ol>
+            </nav>
+        @endauth
+
         <div>
             <form action="/pais/update/{{ $pais->id }}" method="POST" enctype="multipart/form-data">
                 {{-- @csrf --}}
