@@ -42,13 +42,15 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="{{ route('home-continente') }}">Continentes</a></li>
-                        <li><a href="{{ route('home-pais') }}">Países</a></li>
-                        <li><a href="{{ route('home-cidade') }}">Cidades</a></li>
-                    </ul>
+                    @auth
+                        <ul class="nav navbar-nav">
+                            &nbsp;
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('home-continente') }}">Continentes</a></li>
+                            <li><a href="{{ route('home-pais') }}">Países</a></li>
+                            <li><a href="{{ route('home-cidade') }}">Cidades</a></li>
+                        </ul>
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
