@@ -91,6 +91,10 @@
                 <div class="row">
                     @if (session('msg'))
                         <p class="msg">{{ session('msg') }}</p>
+                    @elseif (session('msg-warning'))
+                        <p class="msg-warning">{{ session('msg-warning') }}</p>
+                    @elseif (session('msg-erro'))
+                        <p class="msg-erro">{{ session('msg-erro') }}</p>
                     @endif
                     @yield('content')
                 </div>

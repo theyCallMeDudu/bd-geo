@@ -6,6 +6,7 @@ use App\Pais;
 use App\Continente;
 use App\PaisBandeira;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PaisController extends Controller
@@ -42,13 +43,39 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        $pais = new Pais;
+        // Validação de campos obrigatórios
+        $regras = [
+            'nome' => 'required',
+            'continente' => 'required'
+        ];
 
+        $feedback = [
+            'required' => 'Campo obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+        // Validação de campos obrigatórios
+
+        $pais = new Pais;
         $pais->nome = $request->nome;
         $pais->fk_continente_id = $request->continente;
         $pais->capital = $request->capital;
-        $pais->area = $request->area;
-        $pais->save();
+        
+        if($pais->area != ''){
+            $pais->area = str_replace(",", ".", $request->area);
+        }
+
+
+        $nomePais = $request->nome;
+
+        // Verifica se país já existe
+        if (DB::table('pais')->where('nome', '=', $nomePais)->get()->count()) {
+            return redirect()->back()->with('msg-warning', 'País já cadastrado!');
+        } else {
+            //dd(DB::table('pais')->where('nome', '=', $nomePais)->get()->count());
+            $pais->save();
+        }
+
 
         // Upload de imagem
         if ($request->hasFile('image')) {
@@ -104,6 +131,17 @@ class PaisController extends Controller
 
     public function update(Request $request)
     {
+        $regras = [
+            'nome' => 'required',
+            //'continente' => 'required'
+        ];
+
+        $feedback = [
+            'required' => 'Campo obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+
         $data = $request->all();
 
         // Upload de imagem

@@ -21,8 +21,10 @@
                 {{-- @csrf --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Ex.: América do Sul" required autocomplete="off">
+                    <label for="nome">Nome <span class="campo-obrigatorio">*</span></label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Ex.: América do Sul" autocomplete="off">
+                    <span class="feedback-campo-obrigatorio">{{ $errors->has('nome') ? $errors->first('nome') : ''}}</span>
+                    
                 </div>
 
                 <div>

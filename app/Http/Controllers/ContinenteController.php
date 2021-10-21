@@ -37,6 +37,16 @@ class ContinenteController extends Controller
      */
     public function store(Request $request)
     {
+        $regras = [
+            'nome' => 'required'
+        ];
+
+        $feedback = [
+            'required' => 'Campo obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+        
         $continente = new Continente;
 
         $continente->nome = $request->nome;
@@ -78,6 +88,16 @@ class ContinenteController extends Controller
      */
     public function update(Request $request)
     {
+        $regras = [
+            'nome' => 'required'
+        ];
+
+        $feedback = [
+            'required' => 'Campo obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+        
         $data = $request->all();
 
         Continente::find($request->id)->update($data);

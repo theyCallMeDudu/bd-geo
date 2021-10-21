@@ -21,8 +21,9 @@
                 {{-- @csrf --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Ex.: Rio de Janeiro" required autocomplete="off">
+                    <label for="nome">Nome <span class="campo-obrigatorio">*</span></label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Ex.: Rio de Janeiro" autocomplete="off">
+                    <span class="feedback-campo-obrigatorio">{{ $errors->has('nome') ? $errors->first('nome') : ''}}</span>
                 </div>
             
                 <div class="form-group">
@@ -36,13 +37,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="continente">País</label>
-                    <select class="form-control" id="pais" name="pais" required>
+                    <label for="continente">País <span class="campo-obrigatorio">*</span></label>
+                    <select class="form-control" id="pais" name="pais">
                         <option value="{{ $cidade->relPais->id ?? '' }}">{{ $cidade->relPais->id ?? 'Selecione' }}</option>
                         @foreach ($paises as $pais)
                             <option value="{{ $pais->id }}">{{ $pais->nome }}</option>
                         @endforeach
                     </select>
+                    <span class="feedback-campo-obrigatorio">{{ $errors->has('nome') ? $errors->first('nome') : ''}}</span>
                 </div>
 
                 <div class="form-group">

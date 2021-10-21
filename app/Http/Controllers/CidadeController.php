@@ -27,6 +27,17 @@ class CidadeController extends Controller
 
     public function store(Request $request)
     {
+        $regras = [
+            'nome' => 'required',
+            'pais' => 'required'
+        ];
+
+        $feedback = [
+            'required' => 'Campo obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+
         $cidade = new Cidade;
 
         $cidade->nome = $request->nome;
@@ -89,6 +100,17 @@ class CidadeController extends Controller
 
     public function update(Request $request)
     {
+        $regras = [
+            'nome' => 'required',
+            //'pais' => 'required'
+        ];
+
+        $feedback = [
+            'required' => 'Campo obrigatório'
+        ];
+
+        $request->validate($regras, $feedback);
+
         $data = $request->all();
 
         // Upload de imagem

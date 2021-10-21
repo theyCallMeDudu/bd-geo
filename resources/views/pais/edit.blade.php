@@ -24,8 +24,9 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="{{ $pais->nome }}" required autocomplete="off">
+                    <label for="nome">Nome <span class="campo-obrigatorio">*</span></label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{ $pais->nome }}" autocomplete="off">
+                    <span class="feedback-campo-obrigatorio">{{ $errors->has('nome') ? $errors->first('nome') : ''}}</span>
                 </div>
 
                 <div class="form-group">
@@ -39,7 +40,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="continente">Continente</label>
+                    <label for="continente">Continente <span class="campo-obrigatorio">*</span></label>
                     <select class="form-control" id="continente" name="fk_continente_id">
                         <option value="{{ $pais->relContinente->id ?? '' }}">{{ $pais->relContinente->nome ?? 'Selecione' }}</option>
                         @foreach ($continentes as $continente)
