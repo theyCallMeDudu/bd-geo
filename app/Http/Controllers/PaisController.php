@@ -68,7 +68,7 @@ class PaisController extends Controller
 
         $nomePais = $request->nome;
 
-        // Verifica se país já existe
+        // Verifica se país já existe para não inserir repetido
         if (DB::table('pais')->where('nome', '=', $nomePais)->get()->count()) {
             return redirect()->back()->with('msg-warning', 'País já cadastrado!');
         } else {

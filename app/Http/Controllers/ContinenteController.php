@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Continente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContinenteController extends Controller
 {
@@ -50,7 +51,17 @@ class ContinenteController extends Controller
         $continente = new Continente;
 
         $continente->nome = $request->nome;
-        $continente->save();
+
+        $nomeContinente = $request->nome;
+
+        // Verifica se continente já existe para não inserir repetido
+        if (DB::table('continentes')->where('nome', '=', $nomeContinente)->get()->count()) {
+            return redirect()->back()->with('msg-warning', 'Continente já cadastrado!');
+        } else {
+            //dd(DB::table('continentes')->where('nome', '=', $nomeContinente)->get()->count());
+            $continente->save();
+        }
+        
 
         return redirect('/continente/index')->with('msg', 'Continente cadastrado com sucesso!');
     }

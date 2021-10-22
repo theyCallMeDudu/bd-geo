@@ -6,6 +6,7 @@ use App\Cidade;
 use App\Pais;
 use App\CidadePostal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CidadeController extends Controller
@@ -44,7 +45,18 @@ class CidadeController extends Controller
         $cidade->area = $request->area;
         $cidade->fundacao = $request->fundacao;
         $cidade->fk_pais_id = $request->pais;
-        $cidade->save();
+
+        $nomeCidade = $request->nome;
+
+        // Verifica se cidade já existe para não inserir repetido
+        if (DB::table('cidades')->where('nome', '=', $nomeCidade)->get()->count()) {
+            return redirect()->back()->with('msg-warning', 'Cidade já cadastrada!');
+        } else {
+            //dd(DB::table('continentes')->where('nome', '=', $nomeContinente)->get()->count());
+            $cidade->save();
+        }
+
+
 
         // Upload de imagem
         if ($request->hasFile('image')) {
