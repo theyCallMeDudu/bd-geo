@@ -8,7 +8,7 @@ Segue abaixo o passo a passo para instalação do projeto em sua máquina:
 
 1. Faça o clone do projeto via git;
 2. Usando o cmd ou terminal, vá até a pasta do onde clonou o projeto;
-3. Compie o arquivo .env.example para .env na pasta do projeto. Pode-se usar para Windows: `copy .env.example .env`, ou, `cp .env.example .env`, para Ubuntu;
+3. Copie o arquivo .env.example para .env na pasta do projeto. Pode-se usar para Windows: `copy .env.example .env`, ou, `cp .env.example .env`, para Ubuntu;
 4. No arquivo .env gerado, altere as informações de nome do banco de dados (DB_DATABASE), nome de usuário (DB_USERNAME) e senha (DB_PASSWORD) de acordo com as configurações da sua máquina;
 5. Execute `php artisan key:generate`;
 6. Execute `php artisan migrate`;
